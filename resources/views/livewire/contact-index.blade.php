@@ -1,4 +1,4 @@
-    <div>
+    <div class="container bg-secondary bg-gradient bg-opacity-25 pb-2">
         @if (session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show col-lg-8" role="alert">
             {{ session('success') }}
@@ -70,8 +70,8 @@
                 </tbody>
               </table>  
         
-        <div>
+        <div class="d-flex justify-content-center">
             {{ $contacts->links() }}
         </div>
           
-    </div>
+</div>

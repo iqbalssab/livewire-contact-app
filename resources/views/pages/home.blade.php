@@ -1,6 +1,11 @@
+@include('partials.topbar')
 @extends('layouts.main')
 
 @section('container')
-    <h1>Welcome to Home</h1>
+    <div class="row">
+        <div class="">
+            @livewire('contact-carousel')
+        </div>
+    </div>
   
 @endsection
