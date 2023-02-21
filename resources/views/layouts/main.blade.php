@@ -32,11 +32,11 @@
 
     @livewireStyles
   </head>
-  <body class="">
+  <body>
     
       @include('partials.navbar')
 
-    <div class="">
+    <div>
       @yield('container')
     </div>
 

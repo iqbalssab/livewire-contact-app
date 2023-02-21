@@ -2,3 +2,21 @@
     height : 350px;
     width : 100%;
 }
+
+.gambar {
+    width: 100%;
+    max-height: 78vh;
+    object-fit : cover;
+}
+
+.ikon {
+    color: white;
+    transition : color 2s;
+}
+.ikon:hover {
+    color: 1px solid yellow;
+}
+
+.about-bg{
+    min-height: 78vh;
+}

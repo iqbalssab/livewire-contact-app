@@ -88,8 +88,8 @@
         <div class="modal-body">
           <form>
             <div class="input-group row">
-                <input wire:model="name" type="text" class="form-control ms-2" placeholder="name" aria-label="name">
-                <input wire:model="phone" type="text" class="form-control ms-2" placeholder="phone number" aria-label="phone number">
+                <input wire:model="name" type="text" disabled readonly class="form-control ms-2" placeholder="name" aria-label="name">
+                <input wire:model="phone" type="text" disabled readonly class="form-control ms-2" placeholder="phone number" aria-label="phone number">
             </div>
           </form>
         </div>

@@ -1,7 +1,7 @@
 
   <!-- Navbar Start -->
   <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top px-4 px-lg-5">
-    <a href="index.html" class="navbar-brand d-flex align-items-center">
+    <a href="/" class="navbar-brand d-flex align-items-center">
         <h1 class="m-0">Kontak LaraWire</h1>
     </a>
     <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -9,9 +9,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <a href="/" class="nav-item nav-link active">Home</a>
-            <a href="/about" class="nav-item nav-link">About</a>
-            <a href="/contacts" class="nav-item nav-link">Contact</a>
+            <a href="/" class="nav-item nav-link {{ $active === 'home' ? 'active' : '' }}">Home</a>
+            <a href="/about" class="nav-item nav-link {{ $active === 'about' ? 'active' : '' }}">About</a>
+            <a href="/contacts" class="nav-item nav-link {{ $active === 'contacts' ? 'active' : '' }}">Contact</a>
         </div>
     </div>
 </nav>

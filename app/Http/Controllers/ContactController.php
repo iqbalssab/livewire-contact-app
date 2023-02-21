@@ -15,7 +15,8 @@ class ContactController extends Controller
     public function index()
     {
         return view('pages.contacts', [
-            'title' => 'Home',
+            'title' => 'Contacts',
+            'active' => 'contacts',
             'contacts' => Contact::latest()->get()
             
         ]);
