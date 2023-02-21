@@ -20,4 +20,12 @@ Route::get('/', function (){
         'active' => 'home'
     ]);
 });
+
+Route::get('/about', function (){
+    return view('pages.about' ,[
+        'title' => 'About us',
+        'active' => 'about'
+    ]);
+});
+
 Route::resource('/contacts', ContactController::class);

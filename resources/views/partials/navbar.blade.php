@@ -1,6 +1,6 @@
 
   <!-- Navbar Start -->
-  <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top px-4 px-lg-5">
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top px-4 px-lg-5">
     <a href="index.html" class="navbar-brand d-flex align-items-center">
         <h1 class="m-0">Kontak LaraWire</h1>
     </a>

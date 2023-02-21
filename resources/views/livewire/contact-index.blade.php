@@ -7,17 +7,15 @@
         @endif
         <h1>Tambah Kontak</h1>
     <hr />
-        @if ($isUpdate)
-        <div class="d-flex justify-content-center mb-4 border p-2">
+        {{-- <div class="d-flex justify-content-center mb-4 border p-2">
             <livewire:contact-update />
-        </div>
-        
-        @else
+        </div> --}}
         <div class="d-flex justify-content-center mb-4 border p-2">
             <livewire:contact-create />
         </div>
+        
 
-        @endif
+       
         <h1>Daftar Kontak</h1>
         
         <hr />
@@ -55,9 +53,12 @@
                     <td>{{ $contact->phone }}</td>
                     <td>
                         {{-- Tampil Data --}}
-                        <a href="/contacts/{{ $contact->id }}" class="badge bg-primary text-light mb-1"><span class="bi bi-eye fs-5" width="20px" height="20px"></span></a>
+                        <button wire:click='getContact({{ $contact->id }})' type="button" data-bs-toggle="modal" data-bs-target="#viewModal" class="badge bg-primary text-light fw-bold mb-1 border-0"><span class="bi bi-eye fs-5" width="20px" height="20px"></span>
+                        </button>
                         {{-- Edit --}}
-                        <button wire:click='getContact({{ $contact->id }})' class="badge bg-warning text-dark fw-bold mb-1 border-0"><span class="bi bi-pencil-square fs-5" width="20px" height="20px"></span></button>
+                        <button wire:click='getContact({{ $contact->id }})' type="button" data-bs-toggle="modal" data-bs-target="#editModal" class="badge bg-warning text-dark fw-bold mb-1 border-0"><span class="bi bi-pencil-square fs-5" width="20px" height="20px"></span>
+                        </button>
+                        
                         {{-- Delete --}}
                         <form wire:submit.prevent="destroy({{ $contact->id }})" method="post" class="d-inline">
                             @method('delete')
@@ -66,6 +67,7 @@
                         </form>
                     </td>
                   </tr>
+                  
                   @endforeach
                 </tbody>
               </table>  
@@ -73,5 +75,65 @@
         <div class="d-flex justify-content-center">
             {{ $contacts->links() }}
         </div>
-          
+
+  
+  <!-- Modal view -->
+  <div wire:ignore.self class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Kontak </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="input-group row">
+                <input wire:model="name" type="text" class="form-control ms-2" placeholder="name" aria-label="name">
+                <input wire:model="phone" type="text" class="form-control ms-2" placeholder="phone number" aria-label="phone number">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button wire:click.prevent='cancelButton' type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{{-- End Modal View --}}
+  
+<!-- Modal edit -->
+  <div wire:ignore.self class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Kontak</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="input-group row">
+                <input wire:model='name' type="text" class="form-control ms-2" placeholder="name" aria-label="name">
+                <input wire:model="phone" type="text" class="form-control ms-2" placeholder="phone number" aria-label="phone number">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button wire:click.prevent='cancelButton' type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button wire:click.prevent='update' type="button" class="btn hidden btn-primary">Update Data</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
+@push('scripts')
+    <script>
+        window.addEventListener('show-view-modal', e => {
+            $('#viewModal').modal('show')
+        })
+        
+        window.addEventListener('hide-edit-modal', e => {
+            $('#editModal').modal('hide')
+        })
+    </script>
+@endpush

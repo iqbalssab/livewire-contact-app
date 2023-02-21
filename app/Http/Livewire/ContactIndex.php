@@ -9,9 +9,11 @@ use Livewire\WithPagination;
 class ContactIndex extends Component
 {
     use WithPagination;
-    public $isUpdate = false;
+
     public $paginate = 5;
     public $search;
+    public $name, $phone, $contactId;
+    public $isUpdate = false;
 
     protected $paginationTheme = 'bootstrap';
     protected $listeners = [
@@ -43,13 +45,43 @@ class ContactIndex extends Component
     {
         $this->isUpdate = true;
         $contacts = Contact::find($id);
-        $this->emit('getContact', $contacts);
+        // $this->emit('getContact', $contacts);
+        
+        $this->name = $contacts["name"];
+        $this->phone = $contacts["phone"];
+        $this->contactId = $contacts["id"];
+        // $this->dispatchBrowserEvent('show-view-modal');
+    }
+
+    public function update()
+    {
+        $this->validate([
+            'name' => 'required|max:100',
+            'phone' => 'required|max:15'
+        ]);
+        if ($this->contactId) {
+            $contact = Contact::find($this->contactId);
+            
+            $contact->update([
+                'name' => $this->name,
+                'phone' => $this->phone
+            ]);
+        }
+        $this->isUpdate = false;
+        session()->flash('success', 'Contact '. $this->name .' successfully Updated !');
+        $this->name = '';
+        $this->phone = '';
+        $this->contactId = '';
+
+        $this->dispatchBrowserEvent('hide-edit-modal');
 
     }
 
-    public function cancelButton($status)
+    public function cancelButton()
     {
-        $this->isUpdate = $status;
+        $this->isUpdate = false;
+        $this->name = '';
+        $this->phone = '';
     }
 
     public function handleStored($hasil)
